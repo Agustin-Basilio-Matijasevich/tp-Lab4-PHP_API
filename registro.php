@@ -1,38 +1,41 @@
 <?php
 require_once("enviroment.php");
 
-function checkFields($correo=null, $clave=null, $nombre=null, $apellido=null, $imagen=null){ //Funcion que me indica si los valores de los campos estan vacios.
-    if($correo != null || $clave !=null || $nombre != null || $apellido != null || $imagen != null){
-        return true;
-    }else{ return false; }
-}
-
 $post = json_decode(file_get_contents('php://input')); //Post a Object
 
-if(!empty($post)){
+if($post !=null && $post->email!=null && $post->clave!=null && $post->nombre!=null && $post->apellido != null && $post->imagen != null){
     
-    if(isset($post->correo) && isset($post->clave) && isset($post->nombre)&& isset($post->apellido) && isset($post->imagen)){
-        $correo = $post->correo;    
+    if(!$serverStatus){
+        $email = $post->email;    
         $clave = $post->clave;    
         $nombre = $post->nombre;    
         $apellido = $post->apellido;    
-        $imagen = $post->imagen;   
+        $imagen = $post->imagen;
 
-        if(checkFields($correo, $clave, $nombre, $apellido, $imagen)){ //Verificamos campos vacios.
-        
-        $sql = mysqli_query($DB, "call crearUsuario('$correo', '$clave', '$nombre', '$apellido', '$imagen')"); //Query
-        
+        if($sql= $DB->query("call seUsuario('$email')")->fetch_object())
+        {
+            http_response_code(406); //El Usuario ya existe
+        }
+        else
+        {
+            $DB->close();
+            $DB = new mysqli("electronicanordeste.tplinkdns.com", "appblog", "placido", "blog_php", 42321);
+            $sql = mysqli_query($DB, "call crearUsuario('$email', '$clave', '$nombre', '$apellido', '$imagen')"); //Query
             if($sql){
                 http_response_code(200); //Todo salio bien. Usuario creado con exito.
-            }else{
-                http_response_code(400); //El usuario ya existe, se envio un tipo de dato mal.
             }
-        }else{
-        http_response_code(400); //Envio de datos vacios, faltante de campos.
+            else{
+                http_response_code(500); //Error de Server
+            }
         }
+        
     }else{
-        http_response_code(404); //Si no se envia bien el post, con los parametros que se necesitan.
+        http_response_code(500); //Error de Server
     }
+}
+else
+{
+    http_response_code(400); //Datos mal enviados
 }
 $DB->close();
 

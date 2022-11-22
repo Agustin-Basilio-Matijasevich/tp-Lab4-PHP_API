@@ -1,15 +1,12 @@
 <?php
 require_once("enviroment.php");
 
-$json = file_get_contents('php://input'); //Lectura de POST (que no vienen de un formulario)
-$post = json_decode($json); //Conversion de json a object.
-
-if($post!=null && $post->id!=null && $post->email!=null)  //Verificamos si el objeto, y los atributos(si es que lo tiene) no son nulos.
+if(isset($_GET['email']) && isset($_GET['id']))  //Verificamos si el objeto, y los atributos(si es que lo tiene) no son nulos.
 {
     if(!$serverStatus)
     {
-        $id = $post->id;
-        $email=$post->email;
+        $id = $_GET['id'];
+        $email=$_GET['email'];
         
         $sql= $DB->query("call seArticulo('$id','$email')");
 
