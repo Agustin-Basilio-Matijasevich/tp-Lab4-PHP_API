@@ -1,7 +1,7 @@
 <?php
 require_once("enviroment.php");
 
-if(isset($_GET['email']))  //Verificamos que este seteado el email en GET
+if(isset($_GET['email']) && !empty($_GET['email']))  //Verificamos que este seteado el email en GET
 {
     if(!$serverStatus)
     {

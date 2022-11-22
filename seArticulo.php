@@ -1,7 +1,7 @@
 <?php
 require_once("enviroment.php");
 
-if(isset($_GET['email']) && isset($_GET['id']))  //Verificamos si el objeto, y los atributos(si es que lo tiene) no son nulos.
+if(isset($_GET['email']) && isset($_GET['id']) && !empty($_GET['email']) && !empty($_GET['id']))  //Verificamos si el objeto, y los atributos(si es que lo tiene) no son nulos.
 {
     if(!$serverStatus)
     {

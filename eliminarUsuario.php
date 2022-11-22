@@ -1,7 +1,7 @@
 <?php
 require_once("enviroment.php");
 
-if(isset($_GET['email'])){    
+if(isset($_GET['email']) && !empty($_GET['email'])){    
     $searchUser = $_GET['email'];
 
     if(!$serverStatus){

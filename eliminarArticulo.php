@@ -1,7 +1,7 @@
 <?php
 require_once("enviroment.php");
 
-if(isset($_GET['email']) && isset($_GET['id'])){
+if(isset($_GET['email']) && isset($_GET['id']) && !empty($_GET['email']) && !empty($_GET['id'])){
 
     if(!$serverStatus)
     {
