@@ -9,7 +9,7 @@ if($post !=null && $post->email!=null && $post->clave!=null){ //Verificamos si e
         $email=$post->email;
         $password=$post->clave;
         
-        $sql= $DB->query("call seUsuario('$email')");
+        $sql= $DB->query("select * from usuario where correoUsuario = '$email';");
 
         if($request= $sql->fetch_object()){
             if($request->claveUsuario == $password){
