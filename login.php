@@ -27,4 +27,6 @@ if($post !=null && $post->email!=null && $post->clave!=null){ //Verificamos si e
 }else{
     http_response_code(400); //Datos corruptos.
 }
+
+$DB->close();
 ?>
