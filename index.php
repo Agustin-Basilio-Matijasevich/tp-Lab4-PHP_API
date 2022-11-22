@@ -12,4 +12,6 @@ else
 
 echo "<br><br> Estado de Conexion: ".$DB->host_info . "<br>";
 
+$DB->close();
+
 ?>

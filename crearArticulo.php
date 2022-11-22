@@ -37,4 +37,7 @@ else
 {
     http_response_code(400); //Datos corruptos.
 }
+
+$DB->close();
+
 ?>

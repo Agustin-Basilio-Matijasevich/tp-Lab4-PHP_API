@@ -21,4 +21,6 @@ else
     http_response_code(500); //Error de server
 }
 
+$DB->close();
+
 ?>
