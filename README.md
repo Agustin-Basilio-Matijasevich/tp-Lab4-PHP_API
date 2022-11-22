@@ -93,7 +93,7 @@ ID_Articulo=>int UNSIGNED
 correoAutor=>string  
 fecha=>datetime  
 titulo=>string  
-imagenArticulo=>string  
+imagenArticulo=>string con imagen codificada en base64  
 contenido=>string  
 Ejemplo JSON de Retorno:  
 [  
@@ -120,12 +120,12 @@ Accion: Devuelve todos los articulos almacenados con informacion resumida del au
 Datos requeridos: Ninguno  
 Retorna JSON de varios elementos con clave Valor:  
 ID_Articulo=> int UNSIGNED  
-fecha=> datetime,  
-titulo=> string,  
-imagenArticulo=> string,  
-contenido=> string,  
-NombreUsuario=> string,  
-imagenUsuario=> string,  
+fecha=> datetime  
+titulo=> string  
+imagenArticulo=> string con imagen codificada en base64  
+contenido=> string  
+NombreUsuario=> string  
+imagenUsuario=> string con imagen codificada en base64  
 correoUsuario=> string  
 Ejemplo JSON de Retorno:  
 [  
@@ -165,5 +165,59 @@ ID_Articulo=>int UNSIGNED
 correoAutor=>string  
 fecha=>datetime  
 titulo=>string  
-imagenArticulo=>string  
+imagenArticulo=>string con imagen codificada en base64  
 contenido=>string  
+
+### Archivo: seUsuario.php
+Accion: Recibe el correo de un usuario y devuelve todos sus datos menos la contraseña  
+Datos requeridos: Valores por URL "GET"  
+Campos:  
+email=>string  
+Metodo: GET  
+Ejemplo de URL:  
+http://localhost/mispaginas/tp-Lab4-PHP_API/seUsuario.php?email=aguskapo4321@gmail.com  
+Retorna JSON de 1 Elemento con Clave Valor:  
+nombre=>string  
+apellido=>string  
+imagenUsuario=>string con imagen codificada en base64  
+correoUsuario=>string  
+
+### Archivo: eliminarArticulo.php
+Accion: Recibe el correo de un autor y el id de un articulo, si el articulo existe lo borra  
+Datos requeridos: Valores por URL "GET"  
+Campos:  
+email=>string  
+id=>int UNSIGNED  
+Ejemplo de URL:  
+http://localhost/mispaginas/tp-Lab4-PHP_API/eliminarArticulo.php?email=aguskapo4321@gmail.com&id=25  
+Metodo: GET  
+
+### Archivo: modArticulo.php
+Accion: Recibe el correo de un autor, el id, titulo, imagen y contenido de un articulo, si el articulo existe (valida con correo e id). Modifica el articulo con los nuevos datos recibidos. Aclaro: El correo y el id son para identificar el articulo, no son parametros modificables. Los demas parametros enviados son los que van a modificar el articulo. En otras palabras, tienen que permitir al usuario modificar titulo, imagen y contenido unicamente. Los otros dos datos son internos, no son modificables y sirven para identificar el articulo.  
+Datos requeridos: JSON con un elemento clave Valor.  
+Campos:  
+id=>int UNSIGNED  
+email=>string  
+titulo=>string  
+imagen=>string con imagen codificada en base64  
+contenido=>string  
+Metodo: POST  
+
+### Archivo: modUsuario.php
+Accion: Recibe el correo, clave, imagen, nombre y apellido de un usuario, si existe entonces modifica sus datos por los recibidos (No modifica el correo, ese es usado para localizar el usuario).  
+Datos requeridos: JSON con un elemento clave Valor.  
+Campos:  
+email=>string  
+clave=>string  
+nombre=>string  
+apellido=>string  
+imagen=>string con imagen codificada en base64  
+Metodo: POST  
+
+### Archivo: modUCorreo.php
+Accion: Recibe el correo viejo del usuario y el correo nuevo, si el usuario existe le cambia el correo a el y a todos sus articulos.  
+Datos requeridos: JSON con un elemento clave Valor.  
+Campos:  
+emailV=>string  
+emailN=>string  
+Metodo: POST  
