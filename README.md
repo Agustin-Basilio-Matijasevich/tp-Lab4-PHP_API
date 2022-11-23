@@ -5,11 +5,13 @@ Ruta/archivo.php
 Si es GET: Ruta/archivo.php/?param=...&param=....
 
 ### Status Codes
-- 200: Todo bien
-- 400: Datos mal enviados/Faltan Enviar datos
-- 404: No se encuentran datos/Datos no corresponden con elemento en Base de Datos
-- 406: Error al insertar dato/Clave Primaria Repetida
-- 500: Error de conexion a la Base de Datos (Ingrese la ruta en el navegador para verificar el estado de conexion)
+- 200: Exito en Solicitud.
+- 201: Exito en Solicitud que implica una modificacion en la Base de Datos.
+- 400: Datos mal enviados/Faltan Enviar datos.
+- 401: Datos de login no validos.
+- 410: Dato no encontrado en servidor.
+- 412: Existe un conflicto para ejecutar la solicitud (Correo repetido en registro).
+- 500: Error de Server Puede ser falla de conexion a la Base de datos (Verificar ingresando la ruta del API en el Navegador) o puede haber sido rechazada la query.
 
 ### Nota
 La comunicacion se realiza por JSON o por GET por lo que el tipo de dato siempre sera string.  

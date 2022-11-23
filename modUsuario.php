@@ -20,7 +20,7 @@ if($post!=null && $post->email!=null && $post->clave!=null && $post->imagen!=nul
             $DB = new mysqli("electronicanordeste.tplinkdns.com", "appblog", "placido", "blog_php", 42321);
             if ($DB->query("call modUsuario('$email','$clave','$nombre','$apellido','$imagen')"))
             { 
-                http_response_code(200); //Exito
+                http_response_code(201); //Exito
             }
             else
             {
@@ -29,7 +29,7 @@ if($post!=null && $post->email!=null && $post->clave!=null && $post->imagen!=nul
         }
         else
         {
-            http_response_code(404); //Usuario no existe
+            http_response_code(410); //Usuario no existe
         }
         
     }

@@ -20,7 +20,7 @@ if($post!=null && $post->email!=null && $post->titulo!=null && $post->imagen!=nu
             $DB = new mysqli("electronicanordeste.tplinkdns.com", "appblog", "placido", "blog_php", 42321);
             if ($DB->query("call modArticulo('$email','$id','$titulo','$imagen','$contenido')"))
             { 
-                http_response_code(200); //Exito
+                http_response_code(201); //Exito
             }
             else
             {
@@ -29,7 +29,7 @@ if($post!=null && $post->email!=null && $post->titulo!=null && $post->imagen!=nu
         }
         else
         {
-            http_response_code(404); //Articulo no existe
+            http_response_code(410); //Articulo no existe
         }
         
     }

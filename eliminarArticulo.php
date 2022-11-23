@@ -17,14 +17,14 @@ if(isset($_GET['email']) && isset($_GET['id']) && !empty($_GET['email']) && !emp
             $sql = mysqli_query($DB, "call delArticulo('$id','$email')"); //Query de eliminacion articulo.
         
                 if($sql){
-                    http_response_code(200); //Usuario eliminado con exito.
+                    http_response_code(201); //Usuario eliminado con exito.
                 }else{
                     http_response_code(500); //Error de Server
                 }
         }
         else
         {
-        http_response_code(404); //No se encontraron articulos
+        http_response_code(410); //No se encontraron articulos
         }
     }
     else

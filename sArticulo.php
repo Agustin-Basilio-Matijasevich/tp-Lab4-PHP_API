@@ -13,7 +13,7 @@ if(!$serverStatus)
     }
     else
     {
-        http_response_code(404); //No hay articulos
+        http_response_code(410); //No hay articulos
     }
 }
 else

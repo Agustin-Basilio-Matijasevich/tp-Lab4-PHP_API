@@ -14,7 +14,7 @@ if($post !=null && $post->email!=null && $post->clave!=null && $post->nombre!=nu
 
         if($sql= $DB->query("call seUsuario('$email')")->fetch_object())
         {
-            http_response_code(406); //El Usuario ya existe
+            http_response_code(412); //El Usuario ya existe
         }
         else
         {
@@ -22,7 +22,7 @@ if($post !=null && $post->email!=null && $post->clave!=null && $post->nombre!=nu
             $DB = new mysqli("electronicanordeste.tplinkdns.com", "appblog", "placido", "blog_php", 42321);
             $sql = mysqli_query($DB, "call crearUsuario('$email', '$clave', '$nombre', '$apellido', '$imagen')"); //Query
             if($sql){
-                http_response_code(200); //Todo salio bien. Usuario creado con exito.
+                http_response_code(201); //Todo salio bien. Usuario creado con exito.
             }
             else{
                 http_response_code(500); //Error de Server

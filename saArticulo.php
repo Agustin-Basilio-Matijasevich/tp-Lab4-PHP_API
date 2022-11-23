@@ -16,7 +16,7 @@ if(isset($_GET['email']) && !empty($_GET['email']))  //Verificamos que este sete
         }
         else
         {
-        http_response_code(404); //No se encontraron articulos
+        http_response_code(410); //No se encontraron articulos
         }
     }
     else

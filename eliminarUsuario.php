@@ -14,12 +14,12 @@ if(isset($_GET['email']) && !empty($_GET['email'])){
             $sql = mysqli_query($DB, "call delUsuario('".$searchUser."')"); //Query de eliminacion usuario.
         
                 if($sql){
-                    http_response_code(200); //Usuario eliminado con exito.
+                    http_response_code(201); //Usuario eliminado con exito.
                 }else{
                     http_response_code(500); //Error de Server
                 }
             }else{
-                http_response_code(404); //Si el correo no existe, termina aqui.
+                http_response_code(410); //Si el correo no existe, termina aqui.
             }
     }
     else

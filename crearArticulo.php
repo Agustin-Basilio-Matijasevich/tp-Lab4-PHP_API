@@ -19,12 +19,16 @@ if($post!=null && $post->email!=null && $post->titulo!=null && $post->imagen!=nu
             $DB = new mysqli("electronicanordeste.tplinkdns.com", "appblog", "placido", "blog_php", 42321);
             if($DB->query("call crearArticulo('$email','$titulo','$imagen','$contenido')"))
             {
-                http_response_code(200);
+                http_response_code(201);
+            }
+            else
+            {
+                http_response_code(500);
             }
         }
         else
         {
-            http_response_code(404); //Error de server No se puede Insertar porque no existe autor
+            http_response_code(410); //Error de server No se puede Insertar porque no existe autor
         }
         
     }

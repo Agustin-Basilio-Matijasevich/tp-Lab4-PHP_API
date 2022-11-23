@@ -17,7 +17,7 @@ if($post!=null && $post->emailV && $post->emailN)  //Verificamos si el objeto, y
             $DB = new mysqli("electronicanordeste.tplinkdns.com", "appblog", "placido", "blog_php", 42321);
             if ($DB->query("call modUCorreo('$emailV','$emailN')"))
             { 
-                http_response_code(200); //Exito
+                http_response_code(201); //Exito
             }
             else
             {
@@ -26,7 +26,7 @@ if($post!=null && $post->emailV && $post->emailN)  //Verificamos si el objeto, y
         }
         else
         {
-            http_response_code(404); //Usuario no existe
+            http_response_code(410); //Usuario no existe
         }
         
     }

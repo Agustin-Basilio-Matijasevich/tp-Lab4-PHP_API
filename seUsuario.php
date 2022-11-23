@@ -16,7 +16,7 @@ if(isset($_GET['email']) && !empty($_GET['email']))  //Verificamos si el objeto,
         }
         else
         {
-        http_response_code(404); //No se encontraron articulos
+        http_response_code(410); //No se encontro usuario
         }
     }
     else

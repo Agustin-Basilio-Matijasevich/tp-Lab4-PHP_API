@@ -16,10 +16,10 @@ if($post !=null && $post->email!=null && $post->clave!=null){ //Verificamos si e
             http_response_code(200); //Todo salio bien.
             echo json_encode($request);
             }else{
-                http_response_code(404); //Clave incorrecta.
+                http_response_code(401); //Clave incorrecta.
             }
         }else{
-        http_response_code(404); //Usuario no encontrado
+        http_response_code(401); //Usuario no encontrado
         }
     }else{
         http_response_code(500); //Erorr de server
