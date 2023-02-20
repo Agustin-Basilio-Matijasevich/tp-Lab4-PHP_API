@@ -1,5 +1,3 @@
-### Ruta: http://electronicanordeste.tplinkdns.com:5030/
-
 ### Forma de utilizar los archivos:
 Ruta/archivo.php
 Si es GET: Ruta/archivo.php/?param=...&param=....
